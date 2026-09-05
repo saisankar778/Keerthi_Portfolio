@@ -65,10 +65,10 @@
        SHADOW    darkness of the shadow one sheet casts on the next.
        SHEEN     broad soft light across the face of each fold.
        ------------------------------------------------------------------ */
-    'const float CONTRAST = 0.86;',
+    'const float CONTRAST = 0.98;',
     'const float DEPTH    = 0.17;',
-    'const float CREASE   = 0.09;',
-    'const float SHADOW   = 0.09;',
+    'const float CREASE   = 0.04;',
+    'const float SHADOW   = 0.02;',
     'const float SHEEN    = 0.05;',
     'const vec3  MIDTONE  = vec3(0.80, 0.76, 0.68);',
 
@@ -236,11 +236,11 @@
   gl.enableVertexAttribArray(aPos);
   gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
 
-  var uRes    = gl.getUniformLocation(prog, 'uRes');
-  var uTime   = gl.getUniformLocation(prog, 'uTime');
-  var uMouse  = gl.getUniformLocation(prog, 'uMouse');
+  var uRes = gl.getUniformLocation(prog, 'uRes');
+  var uTime = gl.getUniformLocation(prog, 'uTime');
+  var uMouse = gl.getUniformLocation(prog, 'uMouse');
   var uEnergy = gl.getUniformLocation(prog, 'uEnergy');
-  var uDark   = gl.getUniformLocation(prog, 'uDark');
+  var uDark = gl.getUniformLocation(prog, 'uDark');
 
   /* Soft gradients survive downsampling, so render well under device
      resolution and let the browser scale it back up. */
@@ -262,7 +262,7 @@
 
   /* pointer state, eased so the light glides rather than snaps */
   var target = { x: 0.5, y: 0.42 };
-  var eased  = { x: 0.5, y: 0.42 };
+  var eased = { x: 0.5, y: 0.42 };
   var energy = 0, energyTarget = 0;
   var lastMove = 0;
 
@@ -327,7 +327,7 @@
 
     eased.x += (target.x - eased.x) * 0.038;
     eased.y += (target.y - eased.y) * 0.038;
-    energy  += (energyTarget - energy) * 0.022;
+    energy += (energyTarget - energy) * 0.022;
     darkEased += (dark - darkEased) * 0.08;
 
     var t = (now - start) / 1000;
